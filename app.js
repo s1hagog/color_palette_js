@@ -43,7 +43,7 @@ function hslControls(e) {
 
     //Colorize inputs/sliders
 
-    colorizeSliders(sliders, color);
+    colorizeSliders(sliders, color, e);
 }
 
 function updateTextUI(index, e) {
@@ -117,7 +117,7 @@ function randomColors() {
     resetInputs();
 }
 
-function colorizeSliders(sliders, color) {
+function colorizeSliders(sliders, color, e = {}) {
     //Deconstruct syntax
     [hue, brightness, saturation] = sliders;
 
@@ -132,16 +132,26 @@ function colorizeSliders(sliders, color) {
 
     //Scale hue (it's always same so no need to prepare)
 
+    //App has a bug that if max or min brightness is reached the whole input backgroudn is updated
+    //Aswell as if saturation min is reached the whole input background is updated
+
     //Update Input colors
-    saturation.style.backgroundImage = `linear-gradient(to right, ${scaleSat(
-        0
-    )}, ${scaleSat(1)})`;
 
-    brightness.style.backgroundImage = `linear-gradient(to right, ${scaleBright(
-        0
-    )}, ${scaleBright(0.5)}, ${scaleBright(1)})`;
+    if (e.target != saturation) {
+        saturation.style.backgroundImage = `linear-gradient(to right, ${scaleSat(
+            0
+        )}, ${scaleSat(1)})`;
+    }
 
-    hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75), rgb(204,204,75), rgb(75,204,75),  rgb(75,204,204), rgb(75,75,204),  rgb(204,75,204),  rgb(204,75,75))`;
+    if (e.target != brightness) {
+        brightness.style.backgroundImage = `linear-gradient(to right, ${scaleBright(
+            0
+        )}, ${scaleBright(0.5)}, ${scaleBright(1)})`;
+    }
+
+    if (!e.target) {
+        hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75), rgb(204,204,75), rgb(75,204,75),  rgb(75,204,204), rgb(75,75,204),  rgb(204,75,204),  rgb(204,75,75))`;
+    }
 }
 
 function resetInputs() {
