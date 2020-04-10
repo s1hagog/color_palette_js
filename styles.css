@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    color: #242424;
+}
+
+button {
+    font-family: 'Muli', sans-serif;
+}
+
+path,
+i,
+svg {
+    pointer-events: none;
+}
+
+.colors {
+    min-height: 80vh;
+    display: flex;
+    color: #d4d4d4;
+}
+
+.color {
+    height: 80vh;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    overflow: hidden;
+}
+
+.color h2 {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.sliders {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    background-color: #816767;
+    padding: 1rem;
+    width: 80%;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    /* pointer-events: none; */
+    /* opacity: 0; */
+    /* We Are adding aadjustment calss */
+    /* so are overflow shows it below */
+    /* transform: translateY(100px); */
+    transition: all 0.5s ease-in-out;
+}
+
+.sliders.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.sliders button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    border-bottom-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border: none;
+    background: rgb(73, 73, 73);
+    color: #ffffff;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 20vh;
+}
+
+.panel button {
+    font-size: 1.2rem;
+    margin: 1rem;
+    padding: 1rem 2rem;
+    background: rgb(31, 33, 63);
+    border: none;
+    color: #ffffff;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.panel p {
+    font-size: 1.2rem;
+}
+
+.library-panel,
+.generate-panel,
+.save-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.adjust,
+.lock {
+    font-size: 2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 2rem 0;
+}
+
+/* SLider  */
+input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 1rem 0;
+    width: 100%;
+    position: relative;
+    border-radius: 1rem;
+    cursor: pointer;
+}
