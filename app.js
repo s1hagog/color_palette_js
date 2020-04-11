@@ -3,6 +3,7 @@ const colorDivs = document.querySelectorAll('.color');
 const generateBtn = document.querySelector('.generate');
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll('.color h2');
+const popup = document.querySelector('.copy-container');
 const initialColors = [];
 
 //Event Listeners
@@ -13,6 +14,12 @@ sliders.forEach((slider) => {
 colorDivs.forEach((div, index) => {
     div.addEventListener('input', (e) => {
         updateTextUI(index, e);
+    });
+});
+
+currentHexes.forEach((hex) => {
+    hex.addEventListener('click', () => {
+        copyToClipboard(hex);
     });
 });
 
@@ -59,6 +66,21 @@ function updateTextUI(index, e) {
     checkTextContrast(color, textHex);
 
     icons.forEach((icon) => checkTextContrast(color, icon));
+}
+
+function copyToClipboard(hex) {
+    //Copy to clipboard hack
+    const el = document.createElement('textarea');
+    el.value = hex.innerText;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+
+    //Show Popup message
+    const popupBox = popup.children[0];
+    popup.classList.add('active');
+    popupBox.classList.add('active');
 }
 
 //Functions
@@ -137,20 +159,20 @@ function colorizeSliders(sliders, color, e = {}) {
 
     //Update Input colors
 
+    saturation.style.backgroundImage = `linear-gradient(to right, ${scaleSat(
+        0
+    )}, ${scaleSat(1)})`;
     if (e.target != saturation) {
-        saturation.style.backgroundImage = `linear-gradient(to right, ${scaleSat(
-            0
-        )}, ${scaleSat(1)})`;
     }
 
+    brightness.style.backgroundImage = `linear-gradient(to right, ${scaleBright(
+        0
+    )}, ${scaleBright(0.5)}, ${scaleBright(1)})`;
     if (e.target != brightness) {
-        brightness.style.backgroundImage = `linear-gradient(to right, ${scaleBright(
-            0
-        )}, ${scaleBright(0.5)}, ${scaleBright(1)})`;
     }
 
+    hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75), rgb(204,204,75), rgb(75,204,75),  rgb(75,204,204), rgb(75,75,204),  rgb(204,75,204),  rgb(204,75,75))`;
     if (!e.target) {
-        hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75), rgb(204,204,75), rgb(75,204,75),  rgb(75,204,204), rgb(75,75,204),  rgb(204,75,204),  rgb(204,75,75))`;
     }
 }
 

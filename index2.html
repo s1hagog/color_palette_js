@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <title>Document</title>
+        <style>
+            .container-fluid {
+                height: 100vh;
+                overflow: hidden;
+            }
+            body {
+                background: rgb(85, 85, 85);
+            }
+
+            .content {
+                display: flex;
+                z-index: 2;
+            }
+            .left-content {
+                border: 1px solid white;
+                height: 50vh;
+                color: white;
+                margin: 1em 0;
+                z-index: 20;
+            }
+
+            .left-content::after {
+                position: absolute;
+                content: '';
+                top: 0;
+                right: 0;
+                float: right;
+                width: 100vw;
+                height: 100vh;
+                background-color: cornflowerblue;
+                z-index: -1;
+            }
+            .right-content {
+                border: 1px solid white;
+                color: white;
+                height: 50vh;
+                margin: 1em 0;
+                z-index: 20;
+            }
+
+            .right-content::after {
+                position: absolute;
+                content: '';
+                top: 0;
+                left: 0;
+                float: left;
+                width: 100vw;
+                height: 100vh;
+                background-color: palevioletred;
+                z-index: -1;
+            }
+
+            .blue-color {
+                position: absolute;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                background-color: cornflowerblue;
+            }
+            .pink-color {
+                position: absolute;
+                height: 100vh;
+                top: 0;
+                right: 0;
+                background-color: palevioletred;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <!-- <div class="col-9 blue-color"></div>
+            <div class="col-3 pink-color"></div> -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="left-content">
+                            left content contained here
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="right-content">
+                            right content contained here
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
