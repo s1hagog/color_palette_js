@@ -51,11 +51,11 @@ svg {
     width: 80%;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
-    /* pointer-events: none; */
-    /* opacity: 0; */
+    pointer-events: none;
+    opacity: 0;
     /* We Are adding aadjustment calss */
     /* so are overflow shows it below */
-    /* transform: translateY(100px); */
+    transform: translateY(100px);
     transition: all 0.5s ease-in-out;
 }
 
@@ -175,4 +175,9 @@ input[type='range'] {
 
 .copy-popup.active {
     transform: translateY(0rem);
+}
+
+button:focus,
+button:active {
+    outline: none;
 }

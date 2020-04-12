@@ -1,9 +1,14 @@
 //Global Selections and variables
 const colorDivs = document.querySelectorAll('.color');
-const generateBtn = document.querySelector('.generate');
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll('.color h2');
 const popup = document.querySelector('.copy-container');
+const sliderContainers = document.querySelectorAll('.sliders');
+
+//Buttons
+const generateBtn = document.querySelector('.generate');
+const adjustBtns = document.querySelectorAll('.adjust');
+const closeAdjustmentsBtns = document.querySelectorAll('.close-adjustment');
 
 const initialColors = [];
 
@@ -24,6 +29,9 @@ colorDivs.forEach((div, index) => {
 currentHexes.forEach((hex) => {
     hex.addEventListener('click', () => {
         copyToClipboard(hex);
+
+        //Clearing timeout for accidential animations
+        //So we don't have popup disappear right after it has appeared
         window.clearTimeout(copyTimeout);
     });
 });
@@ -48,6 +56,18 @@ popup.addEventListener('transitionend', (e) => {
         popupBox.classList.remove('active');
         popup.classList.remove('active');
     }, 500);
+});
+
+adjustBtns.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+        toggleAdjustmentPanel(index);
+    });
+});
+
+closeAdjustmentsBtns.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+        toggleAdjustmentPanel(index);
+    });
 });
 
 //Event Functions
@@ -108,6 +128,10 @@ function copyToClipboard(hex) {
     const popupBox = popup.children[0];
     popup.classList.add('active');
     popupBox.classList.add('active');
+}
+
+function toggleAdjustmentPanel(index) {
+    sliderContainers[index].classList.toggle('active');
 }
 
 //Functions
