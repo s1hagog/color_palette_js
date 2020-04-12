@@ -24,21 +24,30 @@ colorDivs.forEach((div, index) => {
 currentHexes.forEach((hex) => {
     hex.addEventListener('click', () => {
         copyToClipboard(hex);
+        window.clearTimeout(copyTimeout);
     });
 });
 
 popup.addEventListener('transitionend', (e) => {
-    if (
-        e.propertyName === 'opacity' &&
-        Boolean(parseInt(window.getComputedStyle(e.target).opacity))
-    ) {
-        copyTimeout = null;
-        const popupBox = popup.children[0];
-        copyTimeout = window.setTimeout(function () {
-            popupBox.classList.remove('active');
-            popup.classList.remove('active');
-        }, 2000);
-    }
+    // if (
+    //     e.propertyName === 'opacity' &&
+    //     Boolean(parseInt(window.getComputedStyle(e.target).opacity))
+    // ) {
+    //     copyTimeout = null;
+    //     const popupBox = popup.children[0];
+    //     copyTimeout = window.setTimeout(function () {
+    //         popupBox.classList.remove('active');
+    //         popup.classList.remove('active');
+    //     }, 500);
+    // }
+
+    //Second way to do it but we also need to clear it on click
+    window.clearTimeout(copyTimeout);
+    const popupBox = popup.children[0];
+    copyTimeout = window.setTimeout(function () {
+        popupBox.classList.remove('active');
+        popup.classList.remove('active');
+    }, 500);
 });
 
 //Event Functions
