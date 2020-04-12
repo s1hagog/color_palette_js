@@ -196,7 +196,7 @@ input[type='range'] {
     border-bottom-left-radius: 1rem;
     border-top-right-radius: 1rem;
     border: none;
-    background: rgb(73, 73, 73);
+    background: #494949;
     color: #ffffff;
     font-weight: 800;
     cursor: pointer;
@@ -205,4 +205,77 @@ input[type='range'] {
 button:focus,
 button:active {
     outline: none;
+}
+
+.submit-save {
+    font-size: 1.2rem;
+    margin: 1rem;
+    padding: 1rem 3rem;
+    background: rgb(31, 33, 63);
+    border: none;
+    color: #ffffff;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.save-name {
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-bottom: 1.5em;
+    border: 2px solid #494949;
+    border-radius: 10px;
+    background: #eaeaea;
+}
+
+.save-name:active,
+.save-name:focus {
+    outline: none;
+}
+
+.library-popup {
+    min-width: 40%;
+    padding: 1rem;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    max-height: 60vh;
+}
+
+.custom-palette {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 2rem;
+}
+
+.small-preview {
+    display: flex;
+    flex: 1;
+}
+
+.small-preview div {
+    flex: 1;
+    height: 5rem;
+}
+
+.custom-palette h4 {
+    flex: 1;
+}
+
+.pick-palette-btn {
+    margin-left: 1em;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    background-color: #494949;
+    border-radius: 10px;
+    color: #ffffff;
+}
+.pick-palette-btn:hover {
+    background-color: #1f1f1f;
+}
+
+.pick-palette-btn:active {
+    transform: translateY(3px);
 }
