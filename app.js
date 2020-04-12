@@ -4,13 +4,26 @@ const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll('.color h2');
 const popup = document.querySelector('.copy-container');
 const sliderContainers = document.querySelectorAll('.sliders');
+const saveContainer = document.querySelector('.save-container');
+const libraryContainer = document.querySelector('.library-container');
 
 //Buttons
 const generateBtn = document.querySelector('.generate');
 const adjustBtns = document.querySelectorAll('.adjust');
 const closeAdjustmentsBtns = document.querySelectorAll('.close-adjustment');
 const lockButtons = document.querySelectorAll('.lock');
+//save
+const saveBtn = document.querySelector('.save');
+const submitSaveBtn = document.querySelector('.submit-save');
+const closeSaveBtn = document.querySelector('.close-save');
+//library
+const libBtn = document.querySelector('.library');
+const closeLibBtn = document.querySelector('.close-library');
 
+//Saved Palettes
+let savedPalettes = [];
+
+//Colors
 let initialColors = [];
 
 //Timeouts section
@@ -80,8 +93,23 @@ lockButtons.forEach((btn, index) => {
         toggleLockColor(index, e);
     });
 });
-//Event Functions
 
+saveBtn.addEventListener('click', (e) => {
+    openPalette(e);
+});
+
+closeSaveBtn.addEventListener('click', (e) => {
+    closeSavePopup(e);
+});
+
+libBtn.addEventListener('click', e => {
+    openLibrary(e);
+})
+closeLibBtn.addEventListener('click', e => {
+    closeLibraryPopup(e);
+})
+
+//Event Functions
 function hslControls(e) {
     const index =
         e.target.getAttribute('data-hue') ||
@@ -152,6 +180,36 @@ function toggleLockColor(index, event) {
     } else {
         event.target.innerHTML = `<i class="fas fa-lock-open"></i>`;
     }
+}
+
+function openPalette(e) {
+    const popup = saveContainer.children[0];
+
+    saveContainer.classList.add('active');
+    popup.classList.add('active');
+}
+
+function closeSavePopup(e) {
+    const savePopup = saveContainer.children[0];
+
+    saveContainer.classList.toggle('active');
+    savePopup.classList.toggle('active');
+}
+
+function openLibrary(e) {
+    const libPopup = libraryContainer.children[0];
+    
+    //Toggle active
+    libraryContainer.classList.toggle('active');
+    libPopup.classList.toggle('active');
+}
+
+function closeLibraryPopup(e) {
+    const libPopup = libraryContainer.children[0];
+    
+    //Toggle active
+    libraryContainer.classList.toggle('active');
+    libPopup.classList.toggle('active');
 }
 
 //Functions
