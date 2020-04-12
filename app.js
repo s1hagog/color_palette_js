@@ -4,7 +4,11 @@ const generateBtn = document.querySelector('.generate');
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll('.color h2');
 const popup = document.querySelector('.copy-container');
+
 const initialColors = [];
+
+//Timeouts section
+let copyTimeout = null;
 
 //Event Listeners
 sliders.forEach((slider) => {
@@ -21,6 +25,20 @@ currentHexes.forEach((hex) => {
     hex.addEventListener('click', () => {
         copyToClipboard(hex);
     });
+});
+
+popup.addEventListener('transitionend', (e) => {
+    if (
+        e.propertyName === 'opacity' &&
+        Boolean(parseInt(window.getComputedStyle(e.target).opacity))
+    ) {
+        copyTimeout = null;
+        const popupBox = popup.children[0];
+        copyTimeout = window.setTimeout(function () {
+            popupBox.classList.remove('active');
+            popup.classList.remove('active');
+        }, 2000);
+    }
 });
 
 //Event Functions
