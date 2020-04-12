@@ -9,8 +9,9 @@ const sliderContainers = document.querySelectorAll('.sliders');
 const generateBtn = document.querySelector('.generate');
 const adjustBtns = document.querySelectorAll('.adjust');
 const closeAdjustmentsBtns = document.querySelectorAll('.close-adjustment');
+const lockButtons = document.querySelectorAll('.lock');
 
-const initialColors = [];
+let initialColors = [];
 
 //Timeouts section
 let copyTimeout = null;
@@ -70,6 +71,15 @@ closeAdjustmentsBtns.forEach((btn, index) => {
     });
 });
 
+generateBtn.addEventListener('click', () => {
+    randomColors();
+});
+
+lockButtons.forEach((btn, index) => {
+    btn.addEventListener('click', function (e) {
+        toggleLockColor(index, e);
+    });
+});
 //Event Functions
 
 function hslControls(e) {
@@ -134,6 +144,16 @@ function toggleAdjustmentPanel(index) {
     sliderContainers[index].classList.toggle('active');
 }
 
+function toggleLockColor(index, event) {
+    //Toggle locked class on container
+    //Check if locked or unlocked to change the icon
+    if (colorDivs[index].classList.toggle('locked')) {
+        event.target.innerHTML = `<i class="fas fa-lock"></i>`;
+    } else {
+        event.target.innerHTML = `<i class="fas fa-lock-open"></i>`;
+    }
+}
+
 //Functions
 function generateHex() {
     // THIS IS MADNESS
@@ -162,13 +182,19 @@ function checkTextContrast(color, text) {
 
 function randomColors() {
     //Initial Colors
+    initialColors = [];
 
     colorDivs.forEach((div, index) => {
         const hexText = div.children[0];
         const randomColor = generateHex();
 
-        //Push Color to initial colors array
-        initialColors.push(randomColor.hex());
+        if (div.classList.contains('locked')) {
+            initialColors.push(hexText.innerText);
+            return;
+        } else {
+            //Push Color to initial colors array
+            initialColors.push(randomColor.hex());
+        }
 
         //add the color to the background
         div.style.backgroundColor = randomColor;
@@ -186,7 +212,6 @@ function randomColors() {
 
         colorizeSliders(sliders, color);
     });
-
     resetInputs();
 }
 
