@@ -95,19 +95,19 @@ lockButtons.forEach((btn, index) => {
 });
 
 saveBtn.addEventListener('click', (e) => {
-    openPalette(e);
+    toggleSavePopup(e);
 });
 
 closeSaveBtn.addEventListener('click', (e) => {
-    closeSavePopup(e);
+    toggleSavePopup(e);
 });
 
-libBtn.addEventListener('click', e => {
-    openLibrary(e);
-})
-closeLibBtn.addEventListener('click', e => {
-    closeLibraryPopup(e);
-})
+libBtn.addEventListener('click', (e) => {
+    toggleLibraryPopup(e);
+});
+closeLibBtn.addEventListener('click', (e) => {
+    toggleLibraryPopup(e);
+});
 
 //Event Functions
 function hslControls(e) {
@@ -182,31 +182,16 @@ function toggleLockColor(index, event) {
     }
 }
 
-function openPalette(e) {
-    const popup = saveContainer.children[0];
-
-    saveContainer.classList.add('active');
-    popup.classList.add('active');
-}
-
-function closeSavePopup(e) {
+function toggleSavePopup(e) {
     const savePopup = saveContainer.children[0];
 
     saveContainer.classList.toggle('active');
     savePopup.classList.toggle('active');
 }
 
-function openLibrary(e) {
+function toggleLibraryPopup(e) {
     const libPopup = libraryContainer.children[0];
-    
-    //Toggle active
-    libraryContainer.classList.toggle('active');
-    libPopup.classList.toggle('active');
-}
 
-function closeLibraryPopup(e) {
-    const libPopup = libraryContainer.children[0];
-    
     //Toggle active
     libraryContainer.classList.toggle('active');
     libPopup.classList.toggle('active');
