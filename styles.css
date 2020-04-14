@@ -39,6 +39,11 @@ svg {
 .color h2 {
     font-size: 2rem;
     cursor: pointer;
+    transition: all 0.1s ease-in;
+}
+
+.color h2:hover {
+    transform: scale(1.1);
 }
 
 .sliders {
@@ -100,6 +105,15 @@ svg {
     color: #ffffff;
     border-radius: 1rem;
     cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.panel button:hover {
+    background: rgb(19, 21, 39);
+}
+
+.panel button:active {
+    transform: translateY(2px);
 }
 
 .panel p {
@@ -122,6 +136,12 @@ svg {
     background: none;
     cursor: pointer;
     margin: 2rem 0;
+    transition: all 0.1s ease-in-out;
+}
+
+.adjust:hover,
+.lock:hover {
+    transform: scale(1.1);
 }
 
 /* SLider  */
@@ -133,6 +153,10 @@ input[type='range'] {
     position: relative;
     border-radius: 1rem;
     cursor: pointer;
+}
+
+input[type='range']:focus {
+    outline: none;
 }
 
 .copy-container,
