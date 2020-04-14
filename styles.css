@@ -303,3 +303,8 @@ button:active {
 .pick-palette-btn:active {
     transform: translateY(3px);
 }
+
+.modal-active {
+    height: 100%;
+    overflow-y: hidden;
+}

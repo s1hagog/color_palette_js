@@ -192,6 +192,9 @@ function toggleSavePopup(e) {
 
     saveContainer.classList.toggle('active');
     savePopup.classList.toggle('active');
+
+    //Toggle Modal Class
+    document.querySelector('body').classList.toggle('modal-active');
 }
 
 function toggleLibraryPopup(e) {
@@ -200,6 +203,9 @@ function toggleLibraryPopup(e) {
     //Toggle active
     libraryContainer.classList.toggle('active');
     libPopup.classList.toggle('active');
+
+    //Toggle Modal Class
+    document.querySelector('body').classList.toggle('modal-active');
 }
 
 function saveCurrentPalette(e) {
